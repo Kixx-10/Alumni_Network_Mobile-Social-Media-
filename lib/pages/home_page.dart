@@ -1,5 +1,4 @@
 import 'package:alumni_network/core/network/api_client.dart';
-import 'package:alumni_network/data/model/profile/response_profile_model.dart';
 import 'package:alumni_network/data/provider/auth_provider.dart';
 import 'package:alumni_network/data/provider/response_profile_notifier.dart';
 import 'package:alumni_network/data/provider/theme_notifier.dart'; 
