@@ -19,7 +19,6 @@ class _HomeTabState extends ConsumerState<HomeTab> {
     final userIdAsync = ref.watch(currentUserIdProvider);
     final String currentUserId = userIdAsync.value ?? '';
     return Scaffold(
-      //backgroundColor: Colors.grey.shade200, 
       body: SafeArea(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,

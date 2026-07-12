@@ -4,7 +4,7 @@ import 'package:alumni_network/data/provider/response_profile_notifier.dart';
 import 'package:alumni_network/data/provider/theme_notifier.dart'; 
 import 'package:alumni_network/pages/login_page.dart';
 import 'package:alumni_network/pages/message_page.dart'; 
-import 'package:alumni_network/pages/network_page.dart';
+import 'package:alumni_network/pages/friend_page.dart';
 import 'package:alumni_network/pages/profile_page.dart';
 import 'package:alumni_network/tab/home_tab.dart';
 import 'package:flutter/material.dart';
@@ -21,7 +21,7 @@ class _HomePageState extends ConsumerState<HomePage> {
   int _currentIndex = 0;
   final List<Widget> _pages = [
     const HomeTab(),
-    const NetworkTab(),
+    const FriendTab(),
     const MessageTab(),
     const ProfileTab(),
   ];
@@ -174,7 +174,7 @@ class _HomePageState extends ConsumerState<HomePage> {
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
               _makeTabItem(Icons.home_rounded, Icons.home_outlined, "Home", 0, activeItemColor, inactiveItemColor),
-              _makeTabItem(Icons.people_alt_rounded, Icons.people_outline_rounded, "Network", 1, activeItemColor, inactiveItemColor),
+              _makeTabItem(Icons.people_alt_rounded, Icons.people_outline_rounded, "Friends", 1, activeItemColor, inactiveItemColor),
               _makeTabItem(Icons.chat_bubble_rounded, Icons.chat_bubble_outline_rounded, "Message", 2, activeItemColor, inactiveItemColor),
               _makeTabItem(Icons.person_rounded, Icons.person_outline_rounded, "Profile", 3, activeItemColor, inactiveItemColor),
             ],
