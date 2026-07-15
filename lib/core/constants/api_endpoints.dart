@@ -7,6 +7,7 @@ class ApiEndPoints{
   static const fetchPost="Post/FetchAllPosts";
   static const toggleLike="Like/toggle";
   static const getMyProfile   = 'Profile/me'; 
+  static const getAllUsers="FriendRequest/discover";
   static const createComment = 'comments';
   static String getPostComments(String postId) => 'posts/$postId/comments';
 }

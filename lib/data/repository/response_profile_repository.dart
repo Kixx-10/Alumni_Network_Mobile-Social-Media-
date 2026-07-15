@@ -20,8 +20,6 @@ class ResponseProfileRepository {
       );
 
       if (response.statusCode == 200 && response.data != null) {
-        // Backend ServiceResponse<ResponseProfileDTO> structure:
-        // { "isSuccess": true, "message": "...", "data": { ...profile fields } }
         final Map<String, dynamic> profileData =
             response.data['data'] as Map<String, dynamic>;
         return ResponseProfileModel.fromJson(profileData);
