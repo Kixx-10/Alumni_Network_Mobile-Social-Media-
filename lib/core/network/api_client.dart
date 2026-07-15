@@ -5,7 +5,7 @@ import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 
 class ApiClient {
-  static const String ipAddress = "192.168.1.10:5143";
+  static const String ipAddress = "192.168.1.9:5143";
   static final ApiClient _instance = ApiClient._internal();
   factory ApiClient() => _instance;
 

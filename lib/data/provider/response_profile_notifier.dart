@@ -40,8 +40,6 @@ class ResponseProfileNotifier extends _$ResponseProfileNotifier {
     await fetchMyProfile();
   }
 
-  // ── Local state update (Avatar ပြောင်းသောအခါ API မခေါ်ဘဲ UI update) ─
-  //same Post updatePostLikeStatus
   void updateAvatarLocally(String newAvatarUrl) {
     if (state.hasValue) {
       state = AsyncValue.data(
