@@ -15,3 +15,60 @@ class UserDiscoveryModel {
     );
   }
 }
+class FriendRequestToMeModel{
+final String id;
+final String senderId;
+final String senderName;
+final String senderAvatarUrl;
+final String status;
+
+  FriendRequestToMeModel({
+    required this.id, 
+    required this.senderId,
+    required this.senderName,
+    required this.senderAvatarUrl,
+    required this.status});
+  factory FriendRequestToMeModel.fromJson(Map<String,dynamic>json){
+    return FriendRequestToMeModel(
+      id: json['id'] as String? ?? '',
+      senderId: json['senderId'] as String? ?? '',
+      senderName: json['senderName'] as String? ?? '',
+      senderAvatarUrl: json['senderAvatarUrl'] as String? ?? '', 
+      status: json['status'] as String? ?? '',
+      );
+  }
+
+}
+class SendFriendRequstModel{
+  final String receiverId;
+
+  SendFriendRequstModel({required this.receiverId});
+  Map<String,dynamic>toJson(){
+    return{
+      'receiverId':receiverId,
+    };
+  }
+}
+
+class AcceptFriendRequestModel{
+  final String requestId;
+
+  AcceptFriendRequestModel(
+    {required this.requestId});
+    Map<String,dynamic>toJson(){
+      return{
+        'requstId':requestId,
+      };
+    }
+}
+class RejectFriendRequestModel{
+  final String requestId;
+
+  RejectFriendRequestModel(
+    {required this.requestId});
+    Map<String,dynamic>toJson(){
+      return{
+        'requstId':requestId,
+      };
+    }
+}

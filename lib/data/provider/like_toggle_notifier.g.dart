@@ -42,7 +42,7 @@ final class LikeToggleNotifierProvider
 }
 
 String _$likeToggleNotifierHash() =>
-    r'8c3d5a66ac6a4cbd780a4d599efa898f04982a68';
+    r'c322e9f5b020f638ad7ca99935324fd31457c9ea';
 
 abstract class _$LikeToggleNotifier extends $Notifier<AsyncValue<void>> {
   AsyncValue<void> build();

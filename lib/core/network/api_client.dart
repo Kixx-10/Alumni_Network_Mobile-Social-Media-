@@ -5,7 +5,7 @@ import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 
 class ApiClient {
-  static const String ipAddress = "192.168.1.9:5143";
+  static const String ipAddress = "192.168.1.5:5143";
   static final ApiClient _instance = ApiClient._internal();
   factory ApiClient() => _instance;
 
@@ -79,6 +79,14 @@ ApiClient._internal() {
   Future<Response> post(String path, {dynamic data}) async {
     try {
       return await dio.post(path, data: data);
+    } on DioException {
+      rethrow;
+    }
+  }
+  
+  Future<Response> put(String path, {dynamic data}) async {
+    try {
+      return await dio.put(path, data: data);
     } on DioException {
       rethrow;
     }

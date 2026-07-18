@@ -6,7 +6,7 @@ import 'package:riverpod_annotation/riverpod_annotation.dart';
 part 'friend_list_notifier.g.dart';
 @riverpod
 class FriendListNotifier extends _$FriendListNotifier{
-late final FriendListRepository _friendListRepository;
+late  FriendListRepository _friendListRepository;
 @override 
 FutureOr<List<UserDiscoveryModel>>build()async{
   _friendListRepository=FriendListRepository(ApiClient());

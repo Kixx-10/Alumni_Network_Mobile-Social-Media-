@@ -6,8 +6,12 @@ class ApiEndPoints{
   static const createPost = "Post/CreatePost";
   static const fetchPost="Post/FetchAllPosts";
   static const toggleLike="Like/toggle";
+  static const createComment = 'comments';
   static const getMyProfile   = 'Profile/me'; 
   static const getAllUsers="FriendRequest/discover";
-  static const createComment = 'comments';
+  static const friendRequestToMe="FriendRequest/pending";
+  static String acceptFriendRequest(String requestId) => "FriendRequest/accept/$requestId";
+  static String rejectFriendRequest(String requestId) => "FriendRequest/reject/$requestId";
+  static const sendRequests="FriendRequest/send_friendRequest";
   static String getPostComments(String postId) => 'posts/$postId/comments';
 }
