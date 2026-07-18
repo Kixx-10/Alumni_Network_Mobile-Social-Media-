@@ -16,7 +16,7 @@ class SignInNotifier extends _$SignInNotifier {
     return const AsyncData(null); 
   }
 
-  Future<void> signIn(SignInModel model) async {
+  Future<void> signIn(SignInModel model) async { 
     state = const AsyncLoading(); 
     state = await AsyncValue.guard(() async {
       final response = await _repository.signIn(model);
@@ -26,7 +26,7 @@ class SignInNotifier extends _$SignInNotifier {
         final String token = backendData['token'].toString();
         await ref.read(tokenStorageProvider).saveToken(token);
         developer.log(
-          '🔑 Backend Token Received',
+          ' Backend Token Received',
           name: 'AUTH_NOTIFIER',
           error: token,
         );

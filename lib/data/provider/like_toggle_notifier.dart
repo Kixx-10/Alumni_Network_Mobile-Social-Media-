@@ -20,8 +20,6 @@ class LikeToggleNotifier extends _$LikeToggleNotifier {
     bool isSuccess = false;
   
     try {
-      developer.log('❤️ Toggling Like for Post: ${likeModel.postId}', name: 'LIKE_TOGGLE_NOTIFIER');
-      
       final response = await _repository.toggleLike(likeModel);
       final String message = response.data['message'] ?? "Success";
       

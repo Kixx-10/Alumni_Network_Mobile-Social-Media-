@@ -7,8 +7,8 @@ class FriendUserCard extends StatelessWidget {
   final String imagePath;
   final String primaryBtnText;
   final String secondaryBtnText;
-  final VoidCallback onPrimaryPressed;
-  final VoidCallback onSecondaryPressed;
+  final VoidCallback? onPrimaryPressed;
+  final VoidCallback? onSecondaryPressed;
 
   const FriendUserCard({
     super.key,
@@ -16,8 +16,8 @@ class FriendUserCard extends StatelessWidget {
     required this.imagePath,
     required this.primaryBtnText,
     required this.secondaryBtnText,
-    required this.onPrimaryPressed,
-    required this.onSecondaryPressed,
+    this.onPrimaryPressed,
+    this.onSecondaryPressed,
   });
 
   @override

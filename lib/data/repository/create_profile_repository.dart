@@ -9,9 +9,6 @@ class CreateProfileRepository {
 
   CreateProfileRepository(this._apiClient);
 
-  /// Profile Image Upload
-  /// ✅ BUG FIX: response.data['mediaUrls'] သည် List<dynamic> ဖြစ်သောကြောင့်
-  ///    String အဖြစ် တိုက်ရိုက် cast မလုပ်ဘဲ List မှ first item ကို ယူသည်
   Future<String?> uploadProfileImage(File imageFile, String jwtToken) async {
     try {
       final formData = FormData();
@@ -36,15 +33,12 @@ class CreateProfileRepository {
       );
 
       if (response.statusCode == 200 && response.data != null) {
-        // ✅ FIX — mediaUrls သည် List ဖြစ်သည်။
-        //    မူလကုဒ်တွင် `as String?` ဟု cast လုပ်၍
-        //    "type 'String' is not a subtype of type 'int'" error ဖြစ်ပွားသည်
-        //    (List ကို String အဖြစ် cast ရင် Dart က index 0 ထင်မှတ်ပြီး int လိုသည်)
+      
         final dynamic rawUrls = response.data['mediaUrls'];
 
         if (rawUrls == null) return null;
 
-        // Case 1: Backend က List<String> ပြန်သည် → first item ယူသည်
+        // Case 1: Backend က List<String> ပြန်သည် → first item ယူ
         if (rawUrls is List && rawUrls.isNotEmpty) {
           return rawUrls.first.toString();
         }

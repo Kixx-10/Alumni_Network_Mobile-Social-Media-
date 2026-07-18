@@ -19,7 +19,6 @@ class FriendListRepository{
       debugPrint("======== FETCH ALL USERS ERROR ========");
       debugPrint("Status Code: ${e.response?.statusCode}");
       debugPrint("Response Data: ${e.response?.data}");
-      debugPrint("=======================================");
       throw Exception(e.response?.data?['message'] ?? "Failed to fetch users from server");
     }catch(e){
       rethrow;
