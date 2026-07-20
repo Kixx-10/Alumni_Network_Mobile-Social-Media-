@@ -156,7 +156,7 @@ class ChatRoomNotifier extends _$ChatRoomNotifier {
 
     _hubConnection = HubConnectionBuilder()
         .withUrl(
-          'https://alumni-network-backend-a8xa.onrender.com/api/',
+          'https://alumni-network-backend-a8xa.onrender.com/chathub',
           options: HttpConnectionOptions(
             accessTokenFactory: () async => token ?? '',
           ),
