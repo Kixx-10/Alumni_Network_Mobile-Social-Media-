@@ -139,8 +139,6 @@ class ChatRoomNotifier extends _$ChatRoomNotifier {
     return history;
   }
 
-  // 💡 chat_room_page ကနေ initState မှာ ခေါ်ပေးရမယ့် method
-  // - receiverId ကို မှတ်ထား + initial status ကို REST ကနေ fetch
   Future<void> initReceiverStatus(String receiverId) async {
     _receiverId = receiverId;
     try {
