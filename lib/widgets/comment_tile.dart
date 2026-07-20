@@ -23,12 +23,21 @@ class _CommentTileState extends State<CommentTile> {
   bool _showReplies = true;
   static const int _maxIndentDepth = 3;
 
+  // String _resolveAvatarUrl(String? rawUrl) {
+  //   if (rawUrl == null || rawUrl.trim().isEmpty) return '';
+  //   if (rawUrl.startsWith('http')) return rawUrl;
+  //   final String baseUrl = 'http://${ApiClient.ipAddress}';
+  //   return '$baseUrl$rawUrl';
+  // }
   String _resolveAvatarUrl(String? rawUrl) {
-    if (rawUrl == null || rawUrl.trim().isEmpty) return '';
-    if (rawUrl.startsWith('http')) return rawUrl;
-    final String baseUrl = 'http://${ApiClient.ipAddress}';
-    return '$baseUrl$rawUrl';
-  }
+  if (rawUrl == null || rawUrl.trim().isEmpty) return '';
+  if (rawUrl.startsWith('http')) return rawUrl;
+  
+  // Render Cloud Server Domain
+  const String originUrl = 'https://alumni-network-backend-a8xa.onrender.com';
+  final String path = rawUrl.startsWith('/') ? rawUrl : '/$rawUrl';
+  return '$originUrl$path';
+}
 
   @override
   Widget build(BuildContext context) {

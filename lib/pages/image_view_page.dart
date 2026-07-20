@@ -28,8 +28,9 @@ class _ImageViewerPageState extends State<ImageViewerPage> {
 
   @override
   Widget build(BuildContext context) {
-    final String baseUrl = "http://${ApiClient.ipAddress}";
-    
+    //final String baseUrl = "http://${ApiClient.ipAddress}";
+    final String baseUrl = "https://alumni-network-backend-a8xa.onrender.com/api/";
+  
     return Scaffold(
       appBar: AppBar(
         title: Text(

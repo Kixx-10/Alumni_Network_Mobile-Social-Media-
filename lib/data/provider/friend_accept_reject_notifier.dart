@@ -2,6 +2,7 @@ import 'dart:async';
 import 'package:alumni_network/core/network/api_client.dart';
 import 'package:alumni_network/data/model/friend/friend_list_model.dart';
 import 'package:alumni_network/data/provider/friend_list_notifier.dart';
+import 'package:alumni_network/data/provider/friend_request_to_me_notifier.dart'; 
 import 'package:alumni_network/data/repository/friend_accept_reject_repository.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
@@ -26,6 +27,7 @@ class FriendAcceptRejectNotifier extends _$FriendAcceptRejectNotifier {
 
     if (!state.hasError) {
       ref.invalidate(friendListProvider); 
+      ref.invalidate(friendRequestToMeProvider); 
     }
   }
 
@@ -38,6 +40,7 @@ class FriendAcceptRejectNotifier extends _$FriendAcceptRejectNotifier {
 
     if (!state.hasError) {
       ref.invalidate(friendListProvider); 
+      ref.invalidate(friendRequestToMeProvider); 
     }
   }
 }

@@ -1,4 +1,4 @@
-import 'package:alumni_network/core/network/api_client.dart';
+//import 'package:alumni_network/core/network/api_client.dart';
 import 'package:alumni_network/data/model/profile/response_profile_model.dart';
 import 'package:alumni_network/data/provider/response_profile_notifier.dart';
 import 'package:flutter/material.dart';
@@ -114,11 +114,14 @@ class _ProfileHeader extends StatelessWidget {
   const _ProfileHeader({required this.profile});
 
   String _resolveAvatarUrl(String? rawUrl) {
-    if (rawUrl == null || rawUrl.trim().isEmpty) return '';
-    if (rawUrl.startsWith('http')) return rawUrl;
-    final String baseUrl = 'http://${ApiClient.ipAddress}';
-    return '$baseUrl$rawUrl';
-  }
+  if (rawUrl == null || rawUrl.trim().isEmpty) return '';
+  if (rawUrl.startsWith('http')) return rawUrl;
+  
+  // Render Cloud Server Domain
+  const String originUrl = 'https://alumni-network-backend-a8xa.onrender.com';
+  final String path = rawUrl.startsWith('/') ? rawUrl : '/$rawUrl';
+  return '$originUrl$path';
+}
   @override
   Widget build(BuildContext context) {
     final String resolvedUrl = _resolveAvatarUrl(profile.avatarUrl);

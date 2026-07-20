@@ -3,7 +3,7 @@ import 'package:alumni_network/data/provider/auth_provider.dart';
 import 'package:alumni_network/data/provider/response_profile_notifier.dart';
 import 'package:alumni_network/data/provider/theme_notifier.dart'; 
 import 'package:alumni_network/pages/login_page.dart';
-import 'package:alumni_network/pages/message_page.dart'; 
+import 'package:alumni_network/pages/chat_page.dart'; 
 import 'package:alumni_network/pages/friend_page.dart';
 import 'package:alumni_network/pages/profile_page.dart';
 import 'package:alumni_network/tab/home_tab.dart';
@@ -22,7 +22,7 @@ class _HomePageState extends ConsumerState<HomePage> {
   final List<Widget> _pages = [
     const HomeTab(),
     const FriendTab(),
-    const MessageTab(),
+    const ChatTab(),
     const ProfileTab(),
   ];
 
@@ -52,11 +52,14 @@ class _HomePageState extends ConsumerState<HomePage> {
     }
   }
   String _resolveAvatarUrl(String? rawUrl) {
-    if (rawUrl == null || rawUrl.trim().isEmpty) return '';
-    if (rawUrl.startsWith('http')) return rawUrl;
-    final String baseUrl = 'http://${ApiClient.ipAddress}';
-    return '$baseUrl$rawUrl';
-  }
+  if (rawUrl == null || rawUrl.trim().isEmpty) return '';
+  if (rawUrl.startsWith('http')) return rawUrl;
+  
+  // Render Cloud Server Domain
+  const String originUrl = 'https://alumni-network-backend-a8xa.onrender.com';
+  final String path = rawUrl.startsWith('/') ? rawUrl : '/$rawUrl';
+  return '$originUrl$path';
+}
 
   @override
   Widget build(BuildContext context) {
@@ -175,7 +178,7 @@ class _HomePageState extends ConsumerState<HomePage> {
             children: [
               _makeTabItem(Icons.home_rounded, Icons.home_outlined, "Home", 0, activeItemColor, inactiveItemColor),
               _makeTabItem(Icons.people_alt_rounded, Icons.people_outline_rounded, "Friends", 1, activeItemColor, inactiveItemColor),
-              _makeTabItem(Icons.chat_bubble_rounded, Icons.chat_bubble_outline_rounded, "Message", 2, activeItemColor, inactiveItemColor),
+              _makeTabItem(Icons.chat_bubble_rounded, Icons.chat_bubble_outline_rounded, "Chat", 2, activeItemColor, inactiveItemColor),
               _makeTabItem(Icons.person_rounded, Icons.person_outline_rounded, "Profile", 3, activeItemColor, inactiveItemColor),
             ],
           ),

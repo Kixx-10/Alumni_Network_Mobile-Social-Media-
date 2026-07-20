@@ -34,7 +34,7 @@ final class FriendAcceptRejectNotifierProvider
 }
 
 String _$friendAcceptRejectNotifierHash() =>
-    r'77c412501c6550cce87da57686edc8eb8a88a517';
+    r'3368f25e224fd5672cc02e42381209a8e5c69afb';
 
 abstract class _$FriendAcceptRejectNotifier extends $AsyncNotifier<bool> {
   FutureOr<bool> build();
