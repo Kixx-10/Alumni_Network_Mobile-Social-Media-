@@ -68,7 +68,7 @@ A full-stack cross-platform community platform designed to bridge the gap betwee
 - PostgreSQL Database (Local or Neon Cloud)
 
 ### 1. Backend Setup
-```bash
+
 # Clone the repository
 git clone [https://github.com/YOUR_GITHUB_USERNAME/alumni_network.git](https://github.com/Kixx-10/Alumni_Network_backend.git)
 
@@ -82,6 +82,8 @@ dotnet ef database update
 # Start the Web API
 dotnet run
 
-📱 Screenshots & Demo
-Registratio | Feed & Community | Real-Time Chat | Alumni Profile |
+## 📱 Screenshots & Demo
+
+| Registration | Feed & Community | Real-Time Chat | Alumni Profile |
 | :---: | :---: | :---: | :---: |
+| <img src="https://github.com/user-attachments/assets/3c00dea2-cf8d-46bd-ae48-74476304429a" width="220" alt="Registration" /> | <img src="https://github.com/user-attachments/assets/29415e2f-5812-4ed3-b30d-bdb3a429a53b" width="220" alt="Feed" /> | <img src="https://github.com/user-attachments/assets/4f517c08-4496-436a-88b7-01beba4632f7" width="220" alt="Chat" /> | <img src="https://github.com/user-attachments/assets/2a419f79-c5f5-4489-9697-c6a0a9d940ee" width="220" alt="Profile" /> |
