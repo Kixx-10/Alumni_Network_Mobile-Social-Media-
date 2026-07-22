@@ -2,7 +2,7 @@
 # 🎓 Alumni Network Application
 
 [![Flutter](https://img.shields.io/badge/Frontend-Flutter-02569B?logo=flutter)](https://flutter.dev)
-[![.NET 10.0](https://img.shields.io/badge/Backend-.NET%2010.0-512BD4?logo=dotnet)](https://dotnet.microsoft.com)
+[![.NET 10.0](https://img.shields.io/badge/Backend-.NET%2010.0-512BD4?logo=dotnet&logoColor=white)](https://dotnet.microsoft.com)
 [![PostgreSQL](https://img.shields.io/badge/Database-PostgreSQL%20(Neon)-4169E1?logo=postgresql)](https://neon.tech)
 [![SignalR](https://img.shields.io/badge/Real--Time-SignalR-orange)](https://learn.microsoft.com/en-us/aspnet/core/signalr)
 [![Cloudinary](https://img.shields.io/badge/Media-Cloudinary-blue?logo=cloudinary)](https://cloudinary.com)
