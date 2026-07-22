@@ -70,7 +70,7 @@ A full-stack cross-platform community platform designed to bridge the gap betwee
 ### 1. Backend Setup
 
 # Clone the repository
-git clone [https://github.com/YOUR_GITHUB_USERNAME/alumni_network.git](https://github.com/Kixx-10/Alumni_Network_backend.git)
+git clone https://github.com/Kixx-10/Alumni_Network_Mobile-Social-Media-.git
 
 # Navigate to backend directory
 cd alumni_network/backend/Alumni
