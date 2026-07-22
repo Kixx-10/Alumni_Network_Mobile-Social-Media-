@@ -1,4 +1,5 @@
 import 'package:alumni_network/core/network/api_client.dart';
+import 'package:alumni_network/data/provider/friend_accept_reject_notifier.dart';
 import 'package:alumni_network/data/provider/friend_list_notifier.dart';
 import 'package:alumni_network/data/provider/friend_request_to_me_notifier.dart';
 import 'package:alumni_network/data/provider/send_friend_request_notifier.dart';
@@ -15,20 +16,32 @@ class FriendTab extends ConsumerStatefulWidget {
 }
 
 class _FriendTabState extends ConsumerState<FriendTab> {
+
   String _resolveAvatarUrl(String? rawUrl) {
-    if (rawUrl == null || rawUrl.trim().isEmpty) return '';
-    if (rawUrl.startsWith('http')) return rawUrl;
-    final String baseUrl = 'http://${ApiClient.ipAddress}';
-    return '$baseUrl$rawUrl';
-  }
+  if (rawUrl == null || rawUrl.trim().isEmpty) return '';
+  if (rawUrl.startsWith('http')) return rawUrl;
+  
+  // Render Cloud Server Domain
+  const String originUrl = 'https://alumni-network-backend-a8xa.onrender.com';
+  final String path = rawUrl.startsWith('/') ? rawUrl : '/$rawUrl';
+  return '$originUrl$path';
+}
+
 void _btnSendRequest(String receiverId) {
   ref.read(sendFriendRequestProvider.notifier).sendRequests(receiverId);
+}
+void _btnAcceptRequest(String requestId){
+  ref.read(friendAcceptRejectProvider.notifier).acceptFriend(requestId);
+}
+void _btnRejectRequest(String requestId){
+  ref.read(friendAcceptRejectProvider.notifier).rejectFriend(requestId);
 }
 
   @override
   Widget build(BuildContext context) {
     final asyncUsers = ref.watch(friendListProvider);
     final asyncRequests = ref.watch(friendRequestToMeProvider);
+
 ref.listen(sendFriendRequestProvider, (previous, next) {
   if (next.hasError) {
     ScaffoldMessenger.of(context).showSnackBar(
@@ -41,6 +54,30 @@ ref.listen(sendFriendRequestProvider, (previous, next) {
     );
   }
 });
+ref.listen(friendAcceptRejectProvider, (previous, next) {
+  if (next.hasError) {
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(content: Text(next.error.toString())),
+    );
+  } 
+  if (previous?.isLoading == true && !next.isLoading && !next.hasError) {
+    ScaffoldMessenger.of(context).showSnackBar(
+      const SnackBar(content: Text("  Friend request Accept successfully!")),
+    );
+  }
+});
+ref.listen(friendAcceptRejectProvider, (previous, next) {
+      if (next.hasError) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text(next.error.toString())),
+        );
+      } 
+      if (previous?.isLoading == true && !next.isLoading && !next.hasError) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(content: Text("Action processed successfully!")),
+        );
+      }
+    });
     final int requestCount = asyncRequests.maybeWhen(
       data: (requests) => requests.length,
       orElse: () => 0,
@@ -108,10 +145,10 @@ ref.listen(sendFriendRequestProvider, (previous, next) {
                             primaryBtnText: "Confirm",
                             secondaryBtnText: "Delete",
                             onPrimaryPressed: () {
-                              debugPrint("Confirm Pressed for index $index");
+                              _btnAcceptRequest(eachRequest.id);
                             },
                             onSecondaryPressed: () {
-                              debugPrint("Delete Pressed for index $index");
+                              _btnRejectRequest(eachRequest.id);
                             },
                           );
                         },

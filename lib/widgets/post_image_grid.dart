@@ -1,4 +1,4 @@
-import 'package:alumni_network/core/network/api_client.dart';
+//import 'package:alumni_network/core/network/api_client.dart';
 import 'package:alumni_network/pages/image_view_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -104,7 +104,7 @@ class PostImageGrid extends StatelessWidget {
   }
 
   Widget _gridImageItem(BuildContext context, int index, {double? height}) {
-    final String baseUrl = "http://${ApiClient.ipAddress}";
+     const String baseUrl= 'https://alumni-network-backend-a8xa.onrender.com';
     final String imageUrl = images[index];
     final String fullImageUrl = imageUrl.startsWith('http') ? imageUrl : "$baseUrl$imageUrl";
     return GestureDetector(

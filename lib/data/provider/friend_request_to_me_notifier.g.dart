@@ -38,7 +38,7 @@ final class FriendRequestToMeNotifierProvider
 }
 
 String _$friendRequestToMeNotifierHash() =>
-    r'55acc53b8e9266579f35965309d16a1d3cac4703';
+    r'73333f4135e52fadf489d0347895a6ac2a335073';
 
 abstract class _$FriendRequestToMeNotifier
     extends $AsyncNotifier<List<FriendRequestToMeModel>> {

@@ -5,7 +5,9 @@ import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 
 class ApiClient {
-  static const String ipAddress = "192.168.1.5:5143";
+  // Render Cloud URL
+  static const String baseUrl = "https://alumni-network-backend-a8xa.onrender.com/api/";
+  
   static final ApiClient _instance = ApiClient._internal();
   factory ApiClient() => _instance;
 
@@ -15,58 +17,58 @@ class ApiClient {
   static final GlobalKey<NavigatorState> navigatorKey =
       GlobalKey<NavigatorState>();
 
- // lib/core/network/api_client.dart
-ApiClient._internal() {
-  dio = Dio(
-    BaseOptions(
-      baseUrl: "http://$ipAddress/api/",
-      connectTimeout: const Duration(seconds: 50),
-      receiveTimeout: const Duration(seconds: 50),
-    ),
-  );
+  ApiClient._internal() {
+    dio = Dio(
+      BaseOptions(
+        baseUrl: baseUrl, 
+        connectTimeout: const Duration(seconds: 50),
+        receiveTimeout: const Duration(seconds: 50),
+      ),
+    );
 
-  dio.interceptors.add(
-    InterceptorsWrapper(
-      onRequest: (RequestOptions options, RequestInterceptorHandler handler) async {
-        final token = await TokenStorage().getToken();
-        if (token != null && token.isNotEmpty) {
-          options.headers['Authorization'] = 'Bearer $token';
-        }
-        return handler.next(options);
-      },
-      onError: (DioException error, ErrorInterceptorHandler handler) async {
-        if (error.response?.statusCode == 401) {
-          final String path = error.requestOptions.path;
-          final bool isAuthEndpoint =
-               path.contains(ApiEndPoints.signIn) ||
-              path.contains(ApiEndPoints.signUp);
+    dio.interceptors.add(
+      InterceptorsWrapper(
+        onRequest: (RequestOptions options, RequestInterceptorHandler handler) async {
+          final token = await TokenStorage().getToken();
+          if (token != null && token.isNotEmpty) {
+            options.headers['Authorization'] = 'Bearer $token';
+          }
+          return handler.next(options);
+        },
+        onError: (DioException error, ErrorInterceptorHandler handler) async {
+          if (error.response?.statusCode == 401) {
+            final String path = error.requestOptions.path;
+            final bool isAuthEndpoint =
+                path.contains(ApiEndPoints.signIn) ||
+                path.contains(ApiEndPoints.signUp);
 
-          if (!isAuthEndpoint) {
-            debugPrint('[ApiClient] 401 — Token expired. Redirecting to Login...');
-            await TokenStorage().deleteToken();
-            navigatorKey.currentState?.pushAndRemoveUntil(
-              MaterialPageRoute(builder: (_) => const LoginPage()),
-              (route) => false,
-            );
-
-            final context = navigatorKey.currentContext;
-            if (context != null) {
-              // ignore: use_build_context_synchronously
-              ScaffoldMessenger.of(context).showSnackBar(
-                const SnackBar(
-                  content: Text('Session expired. Please login again.'),
-                  backgroundColor: Colors.orange,
-                  duration: Duration(seconds: 3),
-                ),
+            if (!isAuthEndpoint) {
+              debugPrint('[ApiClient] 401 — Token expired. Redirecting to Login...');
+              await TokenStorage().deleteToken();
+              navigatorKey.currentState?.pushAndRemoveUntil(
+                MaterialPageRoute(builder: (_) => const LoginPage()),
+                (route) => false,
               );
+
+              final context = navigatorKey.currentContext;
+              if (context != null) {
+                // ignore: use_build_context_synchronously
+                ScaffoldMessenger.of(context).showSnackBar(
+                  const SnackBar(
+                    content: Text('Session expired. Please login again.'),
+                    backgroundColor: Colors.orange,
+                    duration: Duration(seconds: 3),
+                  ),
+                );
+              }
             }
           }
-        }
-        handler.next(error);
-      },
-    ),
-  );
-}
+          handler.next(error);
+        },
+      ),
+    );
+  }
+
   Future<Response> get(String path,
       {Map<String, dynamic>? queryParameters}) async {
     try {
@@ -83,7 +85,7 @@ ApiClient._internal() {
       rethrow;
     }
   }
-  
+
   Future<Response> put(String path, {dynamic data}) async {
     try {
       return await dio.put(path, data: data);

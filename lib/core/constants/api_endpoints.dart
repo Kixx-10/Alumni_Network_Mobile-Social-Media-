@@ -12,6 +12,13 @@ class ApiEndPoints{
   static const friendRequestToMe="FriendRequest/pending";
   static String acceptFriendRequest(String requestId) => "FriendRequest/accept/$requestId";
   static String rejectFriendRequest(String requestId) => "FriendRequest/reject/$requestId";
+  static String fetchConversation="Conversation/my-inbox";
   static const sendRequests="FriendRequest/send_friendRequest";
   static String getPostComments(String postId) => 'posts/$postId/comments';
+
+  static String getChatHistory(String conversationId, {int limit = 50}) =>  "Message/history/$conversationId?limit=$limit";
+
+  static String markMessageAsRead(String messageId) => "Message/read/$messageId";
+
+  static String getUserStatus(String userId) => "users/$userId/status";
 }
